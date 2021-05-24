@@ -8,11 +8,26 @@ int main()
     cin >> input;
 
     switch (input) {
+        case 1:
+            cout << "One";
+            break;
+        case 2:
+            cout << "Two";
+            break;
+        case 3:
+            cout << "Three";
+            break;
         case 4:
-            cout << "Yes";
+            cout << "Four";
+            break;
+        case 5:
+            cout << "Five";
+            break;
+        case 6:
+            cout << "Six";
             break;
         default:
-            cout << "No";
+            cout << "I don't know";
     }
     cout << endl;
     

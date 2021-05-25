@@ -16,7 +16,7 @@ int main()
     cout << "Enter a: ";
     cin >> a;
 
-    int shifted = (a >> 1) & (int)(pow(2, 32-1) - 1);
+    int shifted = (a >> 1) & (int)((1 << 31) - 1);
     cout << "Shifted: " << shifted << endl;
 
     cout << endl << "Default: ";

@@ -8,40 +8,49 @@ SinCosFunc::SinCosFunc(double a, double b) : SinCosFunc(a, b, 1) {}
 SinCosFunc::SinCosFunc(double a, double b, double c) : a(a), b(b), c(c) {}
 /* ============ */
 
+/* Operators */
+double SinCosFunc::operator() (double x) const {
+    return get(x);
+}
+/* ========= */
+
+/* Getters & setters */
+// void SinCosFunc::set_a(double a) {this->a = a;}
+// void SinCosFunc::set_b(double b) {this->b = b;}
+// void SinCosFunc::set_c(double c) {this->c = c;}
+
+double SinCosFunc::get_a() const {return this->a;}
+double SinCosFunc::get_b() const {return this->b;}
+double SinCosFunc::get_c() const {return this->c;}
+/* ================= */
+
 /* Strings */
 string SinCosFunc::get_function_as_string() const {
-    char str[50];
-    sprintf(str, "x < 0 ? %.2f * sin(%.2f * x) : cos(%.2f * x)", this->a, this->b, this->c);
+    char str[80];
+    sprintf(str, "a * sin(b*x), x < 0; cos(c*x) - 1, x >= 0 \tWhere a = %.2f, b = %.2f, c = %.2f", this->a, this->b, this->c);
     return str;
 }
 
 string SinCosFunc::get_function_as_string(double x) const {
     char str[50];
     if (x < 0)
-        sprintf(str, "%.2f * sin(%.2f * %.2f) = %.2f", this->a, this->b, x, get(x));
+        sprintf(str, "a * sin(b*x) = %.2f * sin(%.2f * %.2f) = %.2f", this->a, this->b, x, get(x));
     else
-        sprintf(str, "cos(%.2f * %.2f) = %.2f", this->c, x, get(x));
+        sprintf(str, "cos(c*x) - 1 = cos(%.2f * %.2f) - 1 = %.2f", this->c, x, get(x));
     return str;
 }
 /* ======= */
 
 /* Values */
 double SinCosFunc::get(double x) const {
-    return get(x, this->a, this->b, this->c);
+    return x < 0 ? this->a * sin(this->b * x) : cos(this->c * x) - 1;
 }
 
-double SinCosFunc::get(double x, double a, double b, double c) const {
-    return x < 0 ? a * sin(b * x) : cos(c * x);
-}
-
-double SinCosFunc::get_argument_of_value(double val) const {
-    // TODO
-    return 0;
+double SinCosFunc::get_argument_of_value(double f) const {
+    if (f >= -2 && f <= -1)
+        return acos(f + 1) / this->c;
+    if (f >= 0 && f <= 1)
+        return asin(f / this->a) / this->b;
+    return 404;
 }
 /* ====== */
-
-/* Operators */
-double SinCosFunc::operator() (double x) {
-    return get(x, this->a, this->b, this->c);
-}
-/* ========= */

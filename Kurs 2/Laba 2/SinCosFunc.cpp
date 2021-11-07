@@ -15,9 +15,9 @@ double SinCosFunc::operator() (double x) const {
 /* ========= */
 
 /* Getters & setters */
-// void SinCosFunc::set_a(double a) {this->a = a;}
-// void SinCosFunc::set_b(double b) {this->b = b;}
-// void SinCosFunc::set_c(double c) {this->c = c;}
+void SinCosFunc::set_a(double a) {this->a = a;}
+void SinCosFunc::set_b(double b) {this->b = b;}
+void SinCosFunc::set_c(double c) {this->c = c;}
 
 double SinCosFunc::get_a() const {return this->a;}
 double SinCosFunc::get_b() const {return this->b;}

@@ -8,7 +8,7 @@ using namespace std;
 class SinCosFunc 
 {
 private:
-    const double a, b, c;
+    double a, b, c;
     
     // Values
     double get(double x) const;
@@ -24,9 +24,9 @@ public:
     double operator() (double x) const;
 
     // Setters
-    // void set_a(double a);
-    // void set_b(double b);
-    // void set_c(double c);
+    void set_a(double a);
+    void set_b(double b);
+    void set_c(double c);
 
     // Getters
     double get_a() const;

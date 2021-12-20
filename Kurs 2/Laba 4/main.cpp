@@ -6,9 +6,12 @@
 using namespace std;
 
 int main() {
-    double x, mult = 1;
+    string filename;
+    double x;
     
-    fstream fin("input.txt");
+    cout << "Enter file path: ";
+    cin >> filename;
+    fstream fin(filename);
     if (fin.fail()) return -1;
     
     vector<double> _arr;

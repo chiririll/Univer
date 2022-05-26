@@ -5,6 +5,7 @@
 #include "Commands/Help.h"
 #include "Commands/List.h"
 #include "Commands/Clear.h"
+#include "Commands/Add.h"
 #include "Commands/LoadFile.h"
 #include "Commands/SaveFile.h"
 #include "../Products/Product.h"

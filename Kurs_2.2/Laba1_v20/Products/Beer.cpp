@@ -4,6 +4,14 @@ string Beer::GetType() const {
     return "beer";
 }
 
+map<string, string> Beer::GetAddition() const {
+    map<string, string> fields;
+
+    fields["expiration_date"] = DateToString(expiration_date);
+    fields["warehouse_size"] = std::to_string(warehouse_size);
+    
+    return fields;
+}
 double Beer::CanBuy(double quantity) const {
     return quantity <= GetQuantity() ? quantity : GetQuantity();
 }

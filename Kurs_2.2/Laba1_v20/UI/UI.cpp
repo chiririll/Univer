@@ -7,6 +7,7 @@ UI::UI() {
     commands.push_back(new LoadFile(&products));
     commands.push_back(new SaveFile(&products));
     commands.push_back(new Clear(&products));
+    commands.push_back(new Add(&products));
 }
 
 UI::~UI() {
@@ -71,6 +72,6 @@ bool UI::ReadCommand() {
 }
 
 void UI::StartLoop() {
-    std::cout << "Alcohol warehouse management system v1.0" << std::endl;
+    std::cout << "\t// Alcohol warehouse management system v1.0 //" << std::endl;
     while (ReadCommand());
 }

@@ -58,13 +58,16 @@ bool FileLoader::Save(const std::vector<Product*> &products) {
     }
 
     for (Product* p : products) {
+        // Common data
         fout << p->GetType() << ";" 
              << p->GetLabel() << ";" 
              << p->GetPrice() << ";" 
              << p->GetQuantity() << ";" 
-             << p->GetProductionDateString() // << ";"
-             // << p->GetAdditionalData()
-             << std::endl;
+             << p->GetProductionDateString() << ";";
+        // Specific data
+        for (const auto& kv : p->GetAddition())
+            fout << kv.second << ";";
+        fout << std::endl;
     }
     return true;
 }

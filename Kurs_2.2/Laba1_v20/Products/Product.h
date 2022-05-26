@@ -1,10 +1,12 @@
 #include <string>
+#include <map>
 #include <ctime>
 
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
 using std::string;
+using std::map;
 using std::tm;
 
 struct ProductData {
@@ -22,6 +24,9 @@ class Product {
 private:
     ProductData data;
 
+protected:
+    string DateToString(const tm &date) const;
+
 public:
     Product(string label, int price, double quantity, tm production_date): 
         data(label, price, quantity, production_date) {};
@@ -35,6 +40,7 @@ public:
     string GetProductionDateString() const;
     tm GetProductionDate() const;
     virtual string GetType() const = 0;
+    virtual map<string, string> GetAddition() const = 0;
 
     // Setters
     void ChangePrice(int price);

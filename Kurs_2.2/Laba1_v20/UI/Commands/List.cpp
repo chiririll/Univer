@@ -4,17 +4,26 @@
 void List::Execute(std::vector<std::string> args) {
     using namespace std;
 
-    cout << "List of products:" << endl;
+    string type;
+    if (args.size() > 1)
+        type = args[1];
+    
+    cout << "List of " << (type.empty() ? "products" : type) << ":" << endl;
 
+    vector<string> header = {"Type", "Label", "Price", "Quantity", "Production date"};
+    
     cout << endl << "Type\t | Label\t | Price\t | Quantity\t | Production date" << endl;
     cout << "===========================================================================" << endl;
-    for (Product* product : *products)
-        cout << product->GetType() << "\t | " 
-             << product->GetLabel() << "\t | " 
-             << product->GetPrice() << "\t\t | " 
-             << product->GetQuantity() << "\t\t | " 
-             << product->GetProductionDateString() << "\t" 
-             << endl;
+    // TODO: Display addition
+    for (Product* product : *products) {
+        if (type.empty() || product->GetType() == type)
+            cout << product->GetType() << "\t | " 
+                << product->GetLabel() << "\t | " 
+                << product->GetPrice() << "\t\t | " 
+                << product->GetQuantity() << "\t\t | " 
+                << product->GetProductionDateString() << "\t" 
+                << endl;
+    }
 }
 
 std::string List::GetWord() const {
@@ -26,5 +35,5 @@ std::string List::GetDescription() const {
 }
 
 std::string List::GetArgs() const {
-    return "";
+    return "<type>";
 }

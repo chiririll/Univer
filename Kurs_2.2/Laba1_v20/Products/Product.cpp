@@ -1,5 +1,11 @@
 #include "Product.h"
 
+string Product::DateToString(const tm &date) const {
+    char buffer[11];
+    strftime(buffer, 11, "%Y-%m-%d", &date);
+    return string(buffer);
+}
+
 string Product::GetLabel() const {
     return data.label;
 }
@@ -13,9 +19,7 @@ double Product::GetQuantity() const {
 }
 
 string Product::GetProductionDateString() const {
-    char buffer[12];
-    strftime(buffer, 12, "%Y-%m-%d", &data.production_date);
-    return string(buffer);
+    return DateToString(data.production_date);
 }
 
 tm Product::GetProductionDate() const {

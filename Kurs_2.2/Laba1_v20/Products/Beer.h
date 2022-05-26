@@ -16,6 +16,7 @@ public:
     virtual ~Beer() = default;
 
     string GetType() const;
+    map<string, string> GetAddition() const;
 
     double CanBuy(double quantity) const;
     double CanRestock(double quantity) const;

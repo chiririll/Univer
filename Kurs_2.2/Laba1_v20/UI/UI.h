@@ -3,6 +3,9 @@
 
 #include "Commands/Command.h"
 #include "Commands/Help.h"
+#include "Commands/List.h"
+#include "Commands/LoadFile.h"
+#include "Commands/SaveFile.h"
 #include "../Products/Product.h"
 #include "../Loaders/Loader.h"
 
@@ -13,14 +16,13 @@ class UI {
 private:
     std::vector<Command*> commands;
     std::vector<Product*> products;
-    Loader* products_loader;
 
     // Utils
     void SplitCmd(std::string, std::vector<std::string>&) const;
     void Exit(int) const;
 
 public:
-    UI(Loader*);
+    UI();
     virtual ~UI();
 
     bool ReadCommand();

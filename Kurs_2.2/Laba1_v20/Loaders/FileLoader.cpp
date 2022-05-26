@@ -37,6 +37,7 @@ bool FileLoader::Load(std::vector<Product*> &products) {
         while (semicolon_pos != std::string::npos);
         
         // Creating product
+        // TODO: Fix coflicts
         Product* product = creator.CreateProduct(fields);
         if (product == NULL)
             std::cout << "Error: Can't load product at line " << line_number << ": " << creator.GetError() << std::endl;
@@ -48,5 +49,22 @@ bool FileLoader::Load(std::vector<Product*> &products) {
 }
 
 bool FileLoader::Save(const std::vector<Product*> &products) {
+    std::ofstream fout(file_path);
     
+    // Checking if file exists
+    if (fout.fail()) {
+        PushError("Can't create output file '" + file_path + "'!");
+        return false;
+    }
+
+    for (Product* p : products) {
+        fout << p->GetType() << ";" 
+             << p->GetLabel() << ";" 
+             << p->GetPrice() << ";" 
+             << p->GetQuantity() << ";" 
+             << p->GetProductionDateString() // << ";"
+             // << p->GetAdditionalData()
+             << std::endl;
+    }
+    return true;
 }

@@ -32,6 +32,8 @@ public:
     string GetLabel() const;
     int GetPrice() const;
     double GetQuantity() const;
+    string GetProductionDateString() const;
+    tm GetProductionDate() const;
     virtual string GetType() const = 0;
 
     // Setters

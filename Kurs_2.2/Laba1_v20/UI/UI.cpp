@@ -1,23 +1,19 @@
 #include "UI.h"
 
-UI::UI(Loader* loader) {
-    // Initializing products
-    this->products_loader = loader;
-    
-    if (!loader->Load(this->products)) {
-        std::cout << "Error: Cant load products list! " << loader->GetError() << std::endl;
-        Exit(1);
-    }
-
+UI::UI() {
     // Initializing commands
     commands.push_back(new Help(&commands));
-    // commands.push_back(new )
+    commands.push_back(new List(&products));
+    commands.push_back(new LoadFile(&products));
+    commands.push_back(new SaveFile(&products));
 }
 
 UI::~UI() {
     // Deleting commands
     for (Command* cmd : commands)
         delete cmd;
+
+    // TODO: save products
 
     // Deleting products
     for (Product *product: products)
@@ -62,15 +58,18 @@ bool UI::ReadCommand() {
     // Finding command
     bool found = false;
     for (Command* cmd : this->commands)
-        if (found = cmd->IsMe(args[0]) | found)
-            cmd->Execute(args);
+        if (found = cmd->IsMe(args[0]) | found) {
+            cmd->Execute(args); 
+            break;
+        }
     
     if (!found)
-        std::cout << "Unknown command. Type 'help' for more info." << std::endl;
+        std::cout << "Unknown command '" << args[0] << "'. Type 'help' for more info." << std::endl;
 
     return true;
 }
 
 void UI::StartLoop() {
+    std::cout << "Alcohol warehouse management system v1.0" << std::endl;
     while (ReadCommand());
 }

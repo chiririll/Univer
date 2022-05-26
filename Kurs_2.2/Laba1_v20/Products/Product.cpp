@@ -12,6 +12,16 @@ double Product::GetQuantity() const {
     return data.quantity;
 }
 
+string Product::GetProductionDateString() const {
+    char buffer[12];
+    strftime(buffer, 12, "%Y-%m-%d", &data.production_date);
+    return string(buffer);
+}
+
+tm Product::GetProductionDate() const {
+    return data.production_date;
+}
+
 void Product::ChangePrice(int price) {
     data.price = price;
 }

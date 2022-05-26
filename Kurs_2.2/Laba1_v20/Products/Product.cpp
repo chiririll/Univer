@@ -6,6 +6,10 @@ string Product::DateToString(const tm &date) const {
     return string(buffer);
 }
 
+int Product::GetId() const {
+    return data.id;
+}
+
 string Product::GetLabel() const {
     return data.label;
 }

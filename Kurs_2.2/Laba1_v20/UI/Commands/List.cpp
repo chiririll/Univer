@@ -1,6 +1,5 @@
 #include "List.h"
 
-
 void List::Execute(std::vector<std::string> args) {
     using namespace std;
 
@@ -10,14 +9,15 @@ void List::Execute(std::vector<std::string> args) {
     
     cout << "List of " << (type.empty() ? "products" : type) << ":" << endl;
 
-    vector<string> header = {"Type", "Label", "Price", "Quantity", "Production date"};
+    // vector<string> header = {"Id", "Type", "Label", "Price", "Quantity", "Production date"};
     
-    cout << endl << "Type\t | Label\t | Price\t | Quantity\t | Production date" << endl;
-    cout << "===========================================================================" << endl;
+    cout << endl << "Id\t | Type\t | Label\t | Price\t | Quantity\t | Production date" << endl;
+    cout << "===================================================================================" << endl;
     // TODO: Display addition
     for (Product* product : *products) {
         if (type.empty() || product->GetType() == type)
-            cout << product->GetType() << "\t | " 
+            cout << product->GetId() << "\t | " 
+                << product->GetType() << "\t | " 
                 << product->GetLabel() << "\t | " 
                 << product->GetPrice() << "\t\t | " 
                 << product->GetQuantity() << "\t\t | " 

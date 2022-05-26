@@ -10,14 +10,15 @@ using std::map;
 using std::tm;
 
 struct ProductData {
+    int id;
     string label;
     int price;
     double quantity;
     tm production_date;
 
     ProductData() = default;
-    ProductData(string label, int price, double quantity, tm producrion_date): 
-        label(label), price(price), quantity(quantity), production_date(production_date) {};
+    ProductData(int id, string label, int price, double quantity, tm producrion_date): 
+        id(id), label(label), price(price), quantity(quantity), production_date(production_date) {};
 };
 
 class Product {
@@ -28,12 +29,13 @@ protected:
     string DateToString(const tm &date) const;
 
 public:
-    Product(string label, int price, double quantity, tm production_date): 
-        data(label, price, quantity, production_date) {};
+    Product(int id, string label, int price, double quantity, tm production_date): 
+        data(id, label, price, quantity, production_date) {};
     Product(ProductData data): data(data) {};
     virtual ~Product() = default;
 
     // Getters
+    int GetId() const;
     string GetLabel() const;
     int GetPrice() const;
     double GetQuantity() const;

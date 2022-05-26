@@ -37,10 +37,20 @@ bool FileLoader::Load(std::vector<Product*> &products) {
         while (semicolon_pos != std::string::npos);
         
         // Creating product
-        // TODO: Fix coflicts
         Product* product = creator.CreateProduct(fields);
-        if (product == NULL)
+        if (product == NULL) {
             std::cout << "Error: Can't load product at line " << line_number << ": " << creator.GetError() << std::endl;
+            continue;
+        }
+
+        bool conflict = false;    
+        for (Product* p : products)
+            if (p->GetId() == product->GetId()) {
+                conflict = true;
+                break;
+            }
+        if (conflict)
+            std::cout << "Error: Can't load product at line " << line_number << ": " << "Conflict id" << std::endl;
         else
             products.push_back(product);
     }

@@ -72,6 +72,6 @@ bool UI::ReadCommand() {
 }
 
 void UI::StartLoop() {
-    std::cout << "\t// Alcohol warehouse management system v1.0 //" << std::endl;
+    std::cout << "  // Alcohol warehouse management system v1.0 //" << std::endl;
     while (ReadCommand());
 }

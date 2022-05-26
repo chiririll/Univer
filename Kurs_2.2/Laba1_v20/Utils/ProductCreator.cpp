@@ -16,29 +16,39 @@ string CheckFields(const string fields_names[], int fields_count, const vector<s
 }
 
 Product* ProductCreator::CreateProduct(const vector<string> &fields) {
-    const string fields_names[] = {"Type", "Label", "Price", "Quantity", "Production date"};
-    const int fields_count = 5;
+    const string fields_names[] = {"Id", "Type", "Label", "Price", "Quantity", "Production date"};
+    const int fields_count = 6;
 
     ProductData product_data;
     string error = "";
+    int pos;
 
     // Missing fields
     error = CheckFields(fields_names, fields_count, fields);
     if (!error.empty()) {PushError(error); return NULL;}
 
+    // Id
+    pos = 0;
+    error = str_to_int(fields_names[pos], fields[pos], product_data.id);
+    if (!error.empty()) {PushError(error); return NULL;}
+
     // Label
-    product_data.label = fields[1];
+    pos = 2;
+    product_data.label = fields[pos];
 
     // Price
-    error = str_to_int(fields_names[2], fields[2], product_data.price);
+    pos = 3;
+    error = str_to_int(fields_names[pos], fields[pos], product_data.price);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Quantity
-    error = str_to_double(fields_names[3], fields[3], product_data.quantity);
+    pos = 4;
+    error = str_to_double(fields_names[pos], fields[pos], product_data.quantity);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Production Date
-    error = parse_date(fields_names[4], fields[4], product_data.production_date);
+    pos = 5;
+    error = parse_date(fields_names[pos], fields[pos], product_data.production_date);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Other fields
@@ -47,14 +57,15 @@ Product* ProductCreator::CreateProduct(const vector<string> &fields) {
     std::copy(fields.begin() + fields_count, fields.end(), other_fields.begin());
 
     // Creating product
-    if (fields[0] == "beer")
+    const string &type = fields[1];
+    if (type == "beer")
         return CreateBeer(product_data, other_fields);
-    if (fields[0] == "vodka")
+    if (type == "vodka")
         return CreateVodka(product_data, other_fields);
-    if (fields[0] == "wine")
+    if (type == "wine")
         return CreateWine(product_data, other_fields);
 
-    PushError("Unknown product type '" + fields[0] + "'");
+    PushError("Unknown product type '" + type + "'");
     return NULL;
 }
 

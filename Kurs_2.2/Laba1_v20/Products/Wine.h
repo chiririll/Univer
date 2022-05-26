@@ -9,7 +9,9 @@ class Wine: public Product {
 private:
 
 public:
-    Wine(string label, int price, double quantity): Product(label, price, quantity) {};
+    Wine(string label, int price, double quantity, time_t production_date): 
+        Product(label, price, quantity, production_date) {};
+    Wine(ProductData data): Product(data) {};
     virtual ~Wine();
 
     string GetType() const;

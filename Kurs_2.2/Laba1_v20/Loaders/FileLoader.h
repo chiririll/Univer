@@ -1,6 +1,8 @@
 #include <fstream>
+#include <iostream>
 
 #include "Loader.h"
+#include "../Utils/ProductCreator.h"
 
 #ifndef FILELOADER_H
 #define FILELOADER_H
@@ -10,12 +12,13 @@ private:
     std::string file_path;
 
 public:
-    FileLoader(): file_path("products.txt") {};
-    FileLoader(const std::string &file_path): file_path(file_path) {};
+    FileLoader(): file_path("products.csv") {};
+    FileLoader(const std::string &file_path, const std::string &prefix = ""): 
+        file_path(file_path), Loader(prefix) {};
     virtual ~FileLoader() = default;
 
-    void Load(std::vector<Product>&) override;
-    void Save(const std::vector<Product>&) override;
+    bool Load(std::vector<Product*>&) override;
+    bool Save(const std::vector<Product*>&) override;
 };
 
 #endif // FILELOADER_H

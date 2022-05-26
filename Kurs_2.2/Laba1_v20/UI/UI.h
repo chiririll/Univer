@@ -12,11 +12,12 @@
 class UI {
 private:
     std::vector<Command*> commands;
-    std::vector<Product> products;
+    std::vector<Product*> products;
     Loader* products_loader;
 
     // Utils
     void SplitCmd(std::string, std::vector<std::string>&) const;
+    void Exit(int) const;
 
 public:
     UI(Loader*);

@@ -1,19 +1,30 @@
 #include <string>
+#include <ctime>
 
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
 using std::string;
 
-class Product {
-private:
+struct ProductData {
     string label;
     int price;
     double quantity;
+    time_t production_date;
+
+    ProductData() = default;
+    ProductData(string label, int price, double quantity, time_t producrion_date): 
+        label(label), price(price), quantity(quantity), production_date(production_date) {};
+};
+
+class Product {
+private:
+    ProductData data;
 
 public:
-    Product(string label, int price, double quantity): 
-        label(label), price(price), quantity(quantity) {};
+    Product(string label, int price, double quantity, time_t production_date): 
+        data(label, price, quantity, production_date) {};
+    Product(ProductData data): data(data) {};
     virtual ~Product();
 
     // Getters

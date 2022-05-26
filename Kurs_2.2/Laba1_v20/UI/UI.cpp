@@ -3,7 +3,11 @@
 UI::UI(Loader* loader) {
     // Initializing products
     this->products_loader = loader;
-    loader->Load(this->products);
+    
+    if (!loader->Load(this->products)) {
+        std::cout << "Error: Cant load products list! " << loader->GetError() << std::endl;
+        Exit(1);
+    }
 
     // Initializing commands
     commands.push_back(new Help(&commands));
@@ -16,8 +20,8 @@ UI::~UI() {
         delete cmd;
 
     // Deleting products
-    //for (Product product: products)
-    //    delete product;
+    for (Product *product: products)
+        delete product;
 }
 
 void UI::SplitCmd(std::string str_cmd, std::vector<std::string>& args) const {
@@ -29,13 +33,21 @@ void UI::SplitCmd(std::string str_cmd, std::vector<std::string>& args) const {
     } while (pos != std::string::npos);
 }
 
+void UI::Exit(int code = 0) const {
+    std::cout << std::endl << std::endl;
+    std::cout << "Program finished with exit code " << code << "." << std::endl;
+    std::cout << "Press any key to exit... ";
+    std::getchar();
+    exit(code);
+}
+
 bool UI::ReadCommand() {
     using namespace std;
     
     string input;
     vector<string> args;
 
-    cout << "-> ";
+    cout << endl <<  "-> ";
     getline(cin, input);
     
     // Splitting line to args

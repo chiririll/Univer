@@ -1,15 +1,15 @@
 #include "Command.h"
-#include "../../Loaders/FileLoader.h"
 #include "../../Products/Product.h"
 
-#ifndef CMD_LOAD_FILE_H
-#define CMD_LOAD_FILE_H
+#ifndef CMD_CLEAR_H
+#define CMD_CLEAR_H
 
-class LoadFile: public Command {
+class Clear: public Command {
 private:
     std::vector<Product*> *products;
+
 public:
-    LoadFile(std::vector<Product*> *products): products(products) {};
+    Clear(std::vector<Product*> *products): products(products) {};
 
     void Execute(std::vector<std::string> args) override;
 
@@ -18,4 +18,4 @@ public:
     std::string GetArgs() const override;
 };
 
-#endif // CMD_LOAD_FILE_H
+#endif // CMD_CLEAR_H

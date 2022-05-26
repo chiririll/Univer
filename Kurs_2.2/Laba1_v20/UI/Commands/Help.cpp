@@ -8,7 +8,7 @@ void Help::Execute(std::vector<std::string> args) {
 
     cout << endl << "Here is a list of all commands:" << endl;
     for (Command* cmd : *commands)
-        cout << cmd->GetWord() << " " << cmd->GetArgs() << "\t - \t" << cmd->GetDescription() << endl;
+        cout << cmd->GetWord() << " " << cmd->GetArgs() << "\t - " << cmd->GetDescription() << endl;
 }
 
 std::string Help::GetWord() const {

@@ -6,6 +6,7 @@ UI::UI() {
     commands.push_back(new List(&products));
     commands.push_back(new LoadFile(&products));
     commands.push_back(new SaveFile(&products));
+    commands.push_back(new Clear(&products));
 }
 
 UI::~UI() {
@@ -58,7 +59,7 @@ bool UI::ReadCommand() {
     // Finding command
     bool found = false;
     for (Command* cmd : this->commands)
-        if (found = cmd->IsMe(args[0]) | found) {
+        if (found = cmd->IsMe(args[0]) || found) {
             cmd->Execute(args); 
             break;
         }

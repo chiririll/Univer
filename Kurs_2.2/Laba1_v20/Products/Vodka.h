@@ -8,7 +8,7 @@ private:
     double warehouse_size;
 
 public:
-    Vodka(string label, int price, double quantity, time_t production_date, double warehouse_size): 
+    Vodka(string label, int price, double quantity, tm production_date, double warehouse_size): 
         Product(label, price, quantity, production_date), warehouse_size(warehouse_size) {};
     Vodka(ProductData data, double warehouse_size): 
         Product(data), warehouse_size(warehouse_size) {};

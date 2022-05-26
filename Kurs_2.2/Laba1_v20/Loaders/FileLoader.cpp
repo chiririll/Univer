@@ -23,7 +23,6 @@ bool FileLoader::Load(std::vector<Product*> &products) {
     ProductCreator creator(GetPrefix() + "\t");
     for (int line_number = 1; std::getline(fin, line); line_number++) {
         // Skipping comments and empty lines
-        std::cout << line_number << std::endl;
         if (line.empty() || line[0] == '#')
             continue;
 

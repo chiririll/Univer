@@ -9,7 +9,7 @@ class Wine: public Product {
 private:
 
 public:
-    Wine(string label, int price, double quantity, time_t production_date): 
+    Wine(string label, int price, double quantity, tm production_date): 
         Product(label, price, quantity, production_date) {};
     Wine(ProductData data): Product(data) {};
     virtual ~Wine();

@@ -5,15 +5,16 @@
 #define PRODUCT_H
 
 using std::string;
+using std::tm;
 
 struct ProductData {
     string label;
     int price;
     double quantity;
-    time_t production_date;
+    tm production_date;
 
     ProductData() = default;
-    ProductData(string label, int price, double quantity, time_t producrion_date): 
+    ProductData(string label, int price, double quantity, tm producrion_date): 
         label(label), price(price), quantity(quantity), production_date(production_date) {};
 };
 
@@ -22,7 +23,7 @@ private:
     ProductData data;
 
 public:
-    Product(string label, int price, double quantity, time_t production_date): 
+    Product(string label, int price, double quantity, tm production_date): 
         data(label, price, quantity, production_date) {};
     Product(ProductData data): data(data) {};
     virtual ~Product();

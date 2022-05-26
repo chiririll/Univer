@@ -1,6 +1,6 @@
 #include <vector>
-#include <iomanip>
 #include <string>
+#include <ctime>
 #include <stdexcept>
 
 #include "ErrorHandler.h"
@@ -10,7 +10,8 @@
 #include "../Products/Vodka.h"
 #include "../Products/Wine.h"
 
-using std::string, std::vector;
+using std::string;
+using std::vector;
 
 #ifndef PRODUCT_CREATOR_H
 #define PRODUCT_CREATOR_H

@@ -16,5 +16,6 @@ double Beer::CanRestock(double quantity) const {
 }
 
 bool Beer::IsExpired() const {
-    return std::time(NULL) > expiration_date;
+    tm t = expiration_date; 
+    return std::time(NULL) > std::mktime(&t);
 }

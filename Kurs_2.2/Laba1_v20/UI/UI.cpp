@@ -8,6 +8,8 @@ UI::UI() {
     commands.push_back(new SaveFile(&products));
     commands.push_back(new Clear(&products));
     commands.push_back(new Add(&products));
+    commands.push_back(new Remove(&products));
+    commands.push_back(new FixId(&products));
 }
 
 UI::~UI() {
@@ -75,3 +77,4 @@ void UI::StartLoop() {
     std::cout << "  // Alcohol warehouse management system v1.0 //" << std::endl;
     while (ReadCommand());
 }
+

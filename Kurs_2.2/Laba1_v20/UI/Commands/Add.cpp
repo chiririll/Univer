@@ -5,6 +5,7 @@ void Add::Execute(std::vector<std::string> args) {
     using namespace std;
 
     vector<string> fields;
+    fields.resize(args.size() - 1);
     fields.insert(fields.begin(), args.begin() + 1, args.end());
     
     ProductCreator creator;
@@ -13,8 +14,9 @@ void Add::Execute(std::vector<std::string> args) {
     if (product == NULL)
         cout << "Can't create product: " << creator.GetError() << endl;
     else {
-        cout << "Product has been created" << endl;
+        product->SetId(products->size());
         products->push_back(product);
+        cout << "Product has been created" << endl;
     }
 }
 

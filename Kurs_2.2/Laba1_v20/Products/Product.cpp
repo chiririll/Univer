@@ -30,6 +30,10 @@ tm Product::GetProductionDate() const {
     return data.production_date;
 }
 
+void Product::SetId(int id) {
+    data.id = id;
+}
+
 void Product::ChangePrice(int price) {
     data.price = price;
 }

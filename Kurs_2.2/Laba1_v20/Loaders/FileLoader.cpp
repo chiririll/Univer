@@ -42,17 +42,22 @@ bool FileLoader::Load(std::vector<Product*> &products) {
             std::cout << "Error: Can't load product at line " << line_number << ": " << creator.GetError() << std::endl;
             continue;
         }
-
+        // Checking conflicts
         bool conflict = false;    
         for (Product* p : products)
-            if (p->GetId() == product->GetId()) {
+            if (p->GetLabel() == product->GetLabel() && p->GetType() == product->GetType()) {
                 conflict = true;
                 break;
             }
-        if (conflict)
-            std::cout << "Error: Can't load product at line " << line_number << ": " << "Conflict id" << std::endl;
-        else
-            products.push_back(product);
+        
+        if (conflict) {
+            std::cout << "Error: Can't load product at line " << line_number << ": " << "Conflict type and label" << std::endl;
+            continue;
+        }
+
+        // Setting id and appending to list
+        product->SetId(products.size());
+        products.push_back(product);
     }
 
     return true;

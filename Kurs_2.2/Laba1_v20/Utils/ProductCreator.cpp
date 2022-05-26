@@ -16,8 +16,8 @@ string CheckFields(const string fields_names[], int fields_count, const vector<s
 }
 
 Product* ProductCreator::CreateProduct(const vector<string> &fields) {
-    const string fields_names[] = {"Id", "Type", "Label", "Price", "Quantity", "Production date"};
-    const int fields_count = 6;
+    const string fields_names[] = {"Type", "Label", "Price", "Quantity", "Production date"};
+    const int fields_count = 5;
 
     ProductData product_data;
     string error = "";
@@ -28,26 +28,24 @@ Product* ProductCreator::CreateProduct(const vector<string> &fields) {
     if (!error.empty()) {PushError(error); return NULL;}
 
     // Id
-    pos = 0;
-    error = str_to_int(fields_names[pos], fields[pos], product_data.id);
-    if (!error.empty()) {PushError(error); return NULL;}
+    product_data.id = 0;
 
     // Label
-    pos = 2;
+    pos = 1;
     product_data.label = fields[pos];
 
     // Price
-    pos = 3;
+    pos = 2;
     error = str_to_int(fields_names[pos], fields[pos], product_data.price);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Quantity
-    pos = 4;
+    pos = 3;
     error = str_to_double(fields_names[pos], fields[pos], product_data.quantity);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Production Date
-    pos = 5;
+    pos = 4;
     error = parse_date(fields_names[pos], fields[pos], product_data.production_date);
     if (!error.empty()) {PushError(error); return NULL;}
     
@@ -57,7 +55,7 @@ Product* ProductCreator::CreateProduct(const vector<string> &fields) {
     std::copy(fields.begin() + fields_count, fields.end(), other_fields.begin());
 
     // Creating product
-    const string &type = fields[1];
+    const string &type = fields[0];
     if (type == "beer")
         return CreateBeer(product_data, other_fields);
     if (type == "vodka")

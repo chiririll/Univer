@@ -45,6 +45,7 @@ public:
     virtual map<string, string> GetAddition() const = 0;
 
     // Setters
+    void SetId(int id);
     void ChangePrice(int price);
     virtual bool Buy(double quantity);
     virtual bool Restock(double quantity);

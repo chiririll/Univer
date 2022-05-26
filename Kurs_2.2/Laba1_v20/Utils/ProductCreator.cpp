@@ -1,27 +1,29 @@
 #include "ProductCreator.h"
 
-string CheckFields(const string fields_names[], const vector<string> &fields) {
-    if (fields.size() >= sizeof(fields_names)) 
+string CheckFields(const string fields_names[], int fields_count, const vector<string> &fields) {
+    if (fields.size() >= fields_count) 
         return "";
 
     string error = "Not enough fields: ";
     
-    for (int i = fields.size(); i < 5; i++)
-        error += fields_names[i] + ", ";
+    for (int i = fields.size(); i < fields_count; i++) {
+        error = error + fields_names[i];
+        error = error + ", ";
+    }
     error.erase(error.length() - 2, 2);
 
     return error;
 }
 
 Product* ProductCreator::CreateProduct(const vector<string> &fields) {
-    const int fields_count = 5;
     const string fields_names[] = {"Type", "Label", "Price", "Quantity", "Production date"};
+    const int fields_count = 5;
 
     ProductData product_data;
     string error = "";
 
     // Missing fields
-    error = CheckFields(fields_names, fields);
+    error = CheckFields(fields_names, fields_count, fields);
     if (!error.empty()) {PushError(error); return NULL;}
 
     // Label
@@ -58,12 +60,12 @@ Product* ProductCreator::CreateProduct(const vector<string> &fields) {
 
 Product* ProductCreator::CreateBeer(ProductData data, const vector<string> &fields) {
     const string fields_names[] = {"Expiration date", "Warehouse capacity"};
-    const int fields_count = sizeof(fields_names);
+    const int fields_count = 2;
 
     string error = "";
 
     // Missing fields
-    error = CheckFields(fields_names, fields);
+    error = CheckFields(fields_names, fields_count, fields);
     if (!error.empty()) {PushError(error); return NULL;}
 
     // Expiration Date
@@ -81,12 +83,12 @@ Product* ProductCreator::CreateBeer(ProductData data, const vector<string> &fiel
 
 Product* ProductCreator::CreateVodka(ProductData data, const vector<string> &fields) {
     const string fields_names[] = {"Warehouse capacity"};
-    const int fields_count = sizeof(fields_names);
+    const int fields_count = 1;
     
     string error = "";
 
     // Missing fields
-    error = CheckFields(fields_names, fields);
+    error = CheckFields(fields_names, fields_count, fields);
     if (!error.empty()) {PushError(error); return NULL;}
 
     // Warehouse capacity

@@ -28,11 +28,11 @@ Product* ProductCreator::CreateProduct(const vector<string> &fields) {
     product_data.label = fields[1];
 
     // Price
-    error = try_to_cast(fields_names[2], fields[2], product_data.price, std::stoi);
+    error = str_to_int(fields_names[2], fields[2], product_data.price);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Quantity
-    error = try_to_cast(fields_names[3], fields[3], product_data.quantity, std::stod);
+    error = str_to_double(fields_names[3], fields[3], product_data.quantity);
     if (!error.empty()) {PushError(error); return NULL;}
     
     // Production Date
@@ -73,7 +73,7 @@ Product* ProductCreator::CreateBeer(ProductData data, const vector<string> &fiel
 
     // Warehouse capacity
     double warehouse_capacity;
-    error = try_to_cast(fields_names[1], fields[1], warehouse_capacity, std::stod);
+    error = str_to_double(fields_names[1], fields[1], warehouse_capacity);
     if (!error.empty()) {PushError(error); return NULL;}
 
     return new Beer(data, expiration_date, warehouse_capacity);
@@ -91,7 +91,7 @@ Product* ProductCreator::CreateVodka(ProductData data, const vector<string> &fie
 
     // Warehouse capacity
     double warehouse_capacity;
-    error = try_to_cast(fields_names[0], fields[0], warehouse_capacity, std::stod);
+    error = str_to_double(fields_names[0], fields[0], warehouse_capacity);
     if (!error.empty()) {PushError(error); return NULL;}
 
     return new Vodka(data, warehouse_capacity);

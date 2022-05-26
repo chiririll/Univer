@@ -26,7 +26,7 @@ public:
     Product(string label, int price, double quantity, tm production_date): 
         data(label, price, quantity, production_date) {};
     Product(ProductData data): data(data) {};
-    virtual ~Product();
+    virtual ~Product() = default;
 
     // Getters
     string GetLabel() const;

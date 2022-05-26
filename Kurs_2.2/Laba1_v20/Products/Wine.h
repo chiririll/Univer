@@ -12,7 +12,7 @@ public:
     Wine(string label, int price, double quantity, tm production_date): 
         Product(label, price, quantity, production_date) {};
     Wine(ProductData data): Product(data) {};
-    virtual ~Wine();
+    virtual ~Wine() = default;
 
     string GetType() const;
 

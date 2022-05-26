@@ -12,7 +12,7 @@ public:
         Product(label, price, quantity, production_date), warehouse_size(warehouse_size) {};
     Vodka(ProductData data, double warehouse_size): 
         Product(data), warehouse_size(warehouse_size) {};
-    virtual ~Vodka();
+    virtual ~Vodka() = default;
 
     string GetType() const;
 

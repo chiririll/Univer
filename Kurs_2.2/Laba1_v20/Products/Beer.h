@@ -13,7 +13,7 @@ public:
         Product(label, price, quantity, production_date), expiration_date(expiration_date), warehouse_size(warehouse_size) {};
     Beer(ProductData data, tm expiration_date, double warehouse_size): 
         Product(data), expiration_date(expiration_date), warehouse_size(warehouse_size) {};
-    virtual ~Beer();
+    virtual ~Beer() = default;
 
     string GetType() const;
 

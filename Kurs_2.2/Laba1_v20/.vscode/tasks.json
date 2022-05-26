@@ -16,6 +16,8 @@
                 "${workspaceFolder}/UI/*.cpp",
                 "-g",
                 "${workspaceFolder}/UI/Commands/*.cpp",
+                "-g",
+                "${workspaceFolder}/Utils/*.cpp",
                 "-o",
                 "${workspaceFolder}/.build/laba1",
             ],

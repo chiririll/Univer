@@ -7,9 +7,11 @@ UI::UI() {
     commands.push_back(new LoadFile(&products));
     commands.push_back(new SaveFile(&products));
     commands.push_back(new Clear(&products));
+    commands.push_back(new FixId(&products));
     commands.push_back(new Add(&products));
     commands.push_back(new Remove(&products));
-    commands.push_back(new FixId(&products));
+    commands.push_back(new Buy(&products, earnings));
+    commands.push_back(new Earnings(earnings));
 }
 
 UI::~UI() {

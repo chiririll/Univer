@@ -10,6 +10,8 @@
 #include "Commands/Clear.h"
 #include "Commands/Add.h"
 #include "Commands/Remove.h"
+#include "Commands/Buy.h"
+#include "Commands/Earnings.h"
 #include "../Products/Product.h"
 #include "../Loaders/Loader.h"
 
@@ -20,6 +22,8 @@ class UI {
 private:
     std::vector<Command*> commands;
     std::vector<Product*> products;
+
+    int earnings = 0;
 
     // Utils
     void SplitCmd(std::string, std::vector<std::string>&) const;
